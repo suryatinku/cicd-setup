@@ -4,7 +4,6 @@ pipeline {
     registryCredential = 'dockerhubcredentials'
     dockerImage = ''
     }
-
     agent any
     stages {
             stage('Cloning our Git') {
@@ -15,17 +14,20 @@ pipeline {
         stage('Build-dockerfile') {
             steps {
                 script{
-                 app = docker.build("suryatink/cicd")
+                 dockerImage = docker.build registry + ":$BUILD_NUMBER"
                 }
             }
         }   
         
-    stage('Docker deploy') {
-      agent any
-      steps {
-          sh 'docker run -itd -p 5000:5000 --name calculator suryatink/cicd:latest'
+stage('Deploy Image') {
+      steps{
+         script {
+            docker.withRegistry( '', registryCredential ) {
+            dockerImage.push()
+          }
         }
       }
+    }
       
 
         }
