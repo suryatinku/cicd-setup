@@ -1,4 +1,9 @@
 pipeline {
+    environment {
+    registry = "suryatink/cicd"
+    registryCredential = 'dockerhub'
+    dockerImage = ''
+    }	
 	agent any
 	stages {
 		stage('git checkout') {
