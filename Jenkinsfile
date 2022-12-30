@@ -38,8 +38,9 @@ stage('success or abort')
 
 stage('Deploy') {
       steps{
+            input 'Click on Proceed or abort?'
             sh "docker pull suryatink/cicd:$BUILD_NUMBER"
-            sh 'docker run -itd -p 5000:5000 --name calculator suryatink/cicd:$BUILD_NUMBER'
+            sh 'docker run -itd -p 5000:5000 --name factorialcalculator suryatink/cicd:$BUILD_NUMBER'
                 }
             }         
 
