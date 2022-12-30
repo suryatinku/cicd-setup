@@ -32,10 +32,10 @@ stage('success or abort'){
        catch(err) {
                    currentBuild.result = 'SUCCESS'
                    return
-    }
-    }
-    }
-    }        
+            }
+          }
+         }
+        }        
 
 stage('Deploy') {
       steps{
