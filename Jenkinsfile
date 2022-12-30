@@ -3,28 +3,32 @@ pipeline {
     registry = "suryatink/cicd"
     registryCredential = 'dockerhub'
     dockerImage = ''
-    }	
-	agent any
-	stages {
-		stage('git checkout') {
-			steps {
-				git credentialsId: 'suryatinku', url: 'https://github.com/suryatinku/cicd-setup.git'
-			}
-		}
-        stage('Build-dockerfile') { 
-            steps { 
-                script{
-                 app = docker.build("suryatink/cicd")
+    }
+
+    agent any
+    stages {
+            stage('Cloning our Git') {
+                steps {
+                git 'git@github.com:naistangz/Docker_Jenkins_Pipeline.git'
+                }
+            }
+
+            stage('Building Docker Image') {
+                steps {
+                    script {
+                        dockerImage = docker.build registry + ":$BUILD_NUMBER"
+                    }
+                }
+            }
+
+            stage('Deploying Docker Image to Dockerhub') {
+                steps {
+                    script {
+                        docker.withRegistry('', registryCredential) {
+                        dockerImage.push()
+                        }
+                    }
                 }
             }
         }
-    stage('Docker deploy') {
-      agent any
-      steps {
-          sh 'docker run -itd -p 80:8081 suryatink/cicd:latest'
-        }
-      }
-    	
-				
-	}
-}
+    }
