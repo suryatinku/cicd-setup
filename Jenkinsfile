@@ -23,24 +23,24 @@ stage('Build & Push Image') {
       }
     }
   
-stage('success or abort')
-        {  steps{
-            script {
-    try {
-        input 'Deploy to UAT?'
-    } catch(err) {
-       currentBuild.result = 'SUCCESS'
-       return
+stage('success or abort'){
+       steps{
+          script {
+             try {
+                  input 'Deploy to UAT?'
+    } 
+       catch(err) {
+                   currentBuild.result = 'SUCCESS'
+                   return
     }
-            }}
-            
-        }        
+    }
+    }
+    }        
 
 stage('Deploy') {
       steps{
-            input 'Click on Proceed or abort?'
             sh "docker pull suryatink/cicd:$BUILD_NUMBER"
-            sh 'docker run -itd -p 5000:5000 --name factorialcalculator suryatink/cicd:$BUILD_NUMBER'
+            sh 'docker run -itd -p 5000:5000 --name calculator suryatink/cicd:$BUILD_NUMBER'
                 }
             }         
 
