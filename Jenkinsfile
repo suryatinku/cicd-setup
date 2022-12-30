@@ -22,8 +22,15 @@ stage('Build & Push Image') {
         }
       }
     }
+  
+ stage("Validate before Apply") {
+   timeout(time:30, unit:'MINUTES') {
+   input 'Are you sure to promote this build to QA?'
+                }
+            }
+        
 
-stage('Manual deployment') {
+stage('Deploy') {
       steps{
             sh "docker pull suryatink/cicd:$BUILD_NUMBER"
             sh 'docker run -itd -p 5000:5000 --name calculator suryatink/cicd:$BUILD_NUMBER'
