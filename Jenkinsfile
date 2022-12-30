@@ -23,7 +23,7 @@ pipeline {
     stage('Docker deploy') {
       agent any
       steps {
-          sh 'docker run -itd -p 80:8081 suryatink/cicd:latest'
+          sh 'docker run -itd -p 5000:5000 --name calculator suryatink/cicd:latest'
         }
       }
       
