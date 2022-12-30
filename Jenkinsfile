@@ -9,7 +9,7 @@ pipeline {
     stages {
             stage('Cloning our Git') {
                 steps {
-                git 'https://github.com/suryatinku/cicd-setup.git'
+                git branch: 'main', credentialsId: 'git', url: 'https://github.com/suryatinku/cicd-setup.git'
                 }
             }
 
