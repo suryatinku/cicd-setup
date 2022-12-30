@@ -23,7 +23,7 @@ stage('Build & Push Image') {
       }
     }
   
- stage("Validate before Apply") {
+ stage('Validate before Apply') {
    timeout(time:30, unit:'MINUTES') {
    input 'Are you sure to promote this build to QA?'
                 }
