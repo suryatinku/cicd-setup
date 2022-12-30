@@ -24,7 +24,7 @@ stage('Build & Push Image') {
     }
   
 stage('success or abort')
-        {
+        {  steps{
             script {
     try {
         input 'Deploy to UAT?'
@@ -32,7 +32,7 @@ stage('success or abort')
        currentBuild.result = 'SUCCESS'
        return
     }
-}
+            }}
             
         }        
 
