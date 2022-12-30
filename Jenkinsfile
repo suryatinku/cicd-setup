@@ -18,7 +18,15 @@ pipeline {
                  app = docker.build("suryatink/cicd")
                 }
             }
-        }        
+        }   
+        
+    stage('Docker deploy') {
+      agent any
+      steps {
+          sh 'docker run -itd -p 80:8081 suryatink/cicd:latest'
+        }
+      }
+      
 
         }
     }
