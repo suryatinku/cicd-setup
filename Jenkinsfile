@@ -15,7 +15,7 @@ pipeline {
         stage('Build-dockerfile') {
             steps {
                 script{
-                 app = sudo docker.build("suryatink/cicd")
+                 app = docker.build("suryatink/cicd")
                 }
             }
         }        
