@@ -1,7 +1,7 @@
 pipeline {
     environment {
     registry = "suryatink/cicd"
-    registryCredential = 'dockerhub'
+    registryCredential = 'dockerhubcredentials'
     dockerImage = ''
     }
 
@@ -9,7 +9,7 @@ pipeline {
     stages {
             stage('Cloning our Git') {
                 steps {
-                git 'git@github.com:naistangz/Docker_Jenkins_Pipeline.git'
+                git 'git@github.com:suryatinku/cicd-setup.git'
                 }
             }
 
