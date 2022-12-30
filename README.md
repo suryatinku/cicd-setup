@@ -7,7 +7,7 @@ and serves static web files (HTML/CSS).
 
 - Python 3
 
-### Installation
+#### Installation
 
 After cloning the repository, change to the cloned directory and
 install the requirements with the following command:
