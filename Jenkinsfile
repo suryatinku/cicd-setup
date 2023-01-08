@@ -17,7 +17,7 @@ REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/
 stage('Logging into AWS ECR') {
 steps {
 script {
-sh 'aws ecr get-login-password --region ${AWS_DEFAULT_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com'
+sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 098324025508.dkr.ecr.ap-south-1.amazonaws.com'
 }
 
 }
