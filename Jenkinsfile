@@ -1,9 +1,11 @@
 pipeline {
-    environment {
-    registry = "suryatink/cicd"
-    registryCredential = 'dockerhubcredentials'
-    dockerImage = ''
-    }
+environment {
+AWS_ACCOUNT_ID="098324025508"
+AWS_DEFAULT_REGION="ap-south-1"
+IMAGE_REPO_NAME="javademo"
+IMAGE_TAG="latest"
+REPOSITORY_URI = "${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_DEFAULT_REGION}.amazonaws.com/${IMAGE_REPO_NAME}"
+}
     agent any
     stages {
             stage('Cloning our Git') {
@@ -37,7 +39,7 @@ stage('Push Image') {
           }
         }
       }
-    }
+    
   
         }
     }
