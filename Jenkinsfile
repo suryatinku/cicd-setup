@@ -15,9 +15,9 @@ pipeline {
 stage('Build & Push Image') {
       steps{
          script {
-            dockerImage = docker.build registry + ":$BUILD_NUMBER" 
-            docker.withRegistry( '', registryCredential ) {
-            dockerImage.push()
+                    docker.withRegistry('https://098324025508.dkr.ecr.ap-south-1.amazonaws.com', 'ecr:ap-south-1:aws') {
+                    app.push("${env.BUILD_NUMBER}")
+                    app.push("latest")
           }
         }
       }
