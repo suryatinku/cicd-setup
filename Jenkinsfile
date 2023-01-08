@@ -32,7 +32,7 @@ stage('Push Image') {
 
           }
         }
-      }
+      }}
     
   
         }
